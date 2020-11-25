@@ -44,7 +44,7 @@ root.minsize(340,620)
 loggedin = False
 
 def home():
-    def msg():
+    def msg(event):
         if msgvalue.get() != "":
             txt = f"{params['username']} : {msgvalue.get()}\n"
             send(txt)
@@ -120,8 +120,10 @@ def home():
 
     btn = Button(btndiv, command=msg, text="Send", font="Consolas 11", fg="#111")
     btn.pack(padx=10)
+    btn.bind('<Button-1>', msg)
+    root.bind('<Return>', msg)
 
-def getvals():
+def getvals(event):
     print(f"[LOGIN ATTEMPT]: Login request with username '{uservalue.get()}' and password '********'")
     
     if uservalue.get() == info["username"] and passvalue.get() == info["password"]:
@@ -177,6 +179,7 @@ if not loggedin:
     passentry.grid(row=1, column=1, pady=15)
 
     Button(body, text="Login", padx=16, command=getvals).grid(row=3, column=0, pady=15)
+    root.bind('<Return>', getvals)
 
     l1 = Label(bottom, text="ChatRoom.py by @ragibalasad", font="Consolas 11", fg="#555", padx=5, pady=5)
     l1.pack()

@@ -7,8 +7,6 @@ from plyer import notification
 
 with open('src/config.json', 'r') as c:
     params = json.load(c)["params"]
-with open('src/config.json', 'r') as c:
-    info = json.load(c)["info"]
 
 HEADER = 64
 PORT = params['PORT']
@@ -118,7 +116,7 @@ def home():
     msgentry = Entry(msgdiv, width=20, textvariable=msgvalue, font="Consolas 13", relief=SUNKEN)
     msgentry.pack(side=LEFT, fill=X, padx=5)
 
-    btn = Button(btndiv, command=msg, text="Send", font="Consolas 11", fg="#111")
+    btn = Button(btndiv, text="Send", font="Consolas 11", fg="#111")
     btn.pack(padx=10)
     btn.bind('<Button-1>', msg)
     root.bind('<Return>', msg)
@@ -126,7 +124,7 @@ def home():
 def getvals(event):
     print(f"[LOGIN ATTEMPT]: Login request with username '{uservalue.get()}' and password '********'")
     
-    if uservalue.get() == info["username"] and passvalue.get() == info["password"]:
+    if uservalue.get() == params["username"] and passvalue.get() == params["password"]:
         loggedin = True
         print(f"[LOGIN SUCCESSFUL] You have logged in successfuly!")
 
@@ -178,12 +176,12 @@ if not loggedin:
     passentry = Entry(body, textvariable=passvalue, font="Consolas")
     passentry.grid(row=1, column=1, pady=15)
 
-    Button(body, text="Login", padx=16, command=getvals).grid(row=3, column=0, pady=15)
+    btn = Button(body, text="Login", padx=16)
+    btn.grid(row=3, column=0, pady=15)
+    btn.bind('<Button-1>', getvals)
     root.bind('<Return>', getvals)
 
     l1 = Label(bottom, text="ChatRoom.py by @ragibalasad", font="Consolas 11", fg="#555", padx=5, pady=5)
     l1.pack()
 
-
 root.mainloop()
-        

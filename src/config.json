@@ -1,14 +1,8 @@
 {
     "params":
     {
-        "dir" : "C:\\Users\\HELLOL\\Desktop\\tkinter\\ChatRoom",
         "IP" : "127.0.0.1",
         "PORT" : 5050,
-        "username" : "RGB"
-    },
-
-    "info":
-    {
         "username" : "root",
         "password" : ""
     }

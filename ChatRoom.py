@@ -10,7 +10,7 @@ with open('src/config.json', 'r') as c:
 
 HEADER = 64
 PORT = params['PORT']
-SERVER = params['IP']
+SERVER = input("Enter Server IP:") #params['IP']
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!DISCONNECT"
